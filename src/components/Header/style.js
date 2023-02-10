@@ -10,3 +10,7 @@ export const StyledNav = styled.nav`
     color: var(--color-primary);
   }
 `;
+export const StyledHeader = styled.header`
+  box-shadow: ${(props) =>
+    props.boxShadow ? `1px 1px 1px 1px var(--color-gray-3)` : ``};
+`;

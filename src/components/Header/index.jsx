@@ -1,15 +1,15 @@
 import { StyledContainer } from "../../styles/container";
-import { StyledNav } from "./style";
-const Header = ({ space, children }) => {
+import { StyledNav, StyledHeader } from "./style";
+const Header = ({ space, children, boxShadow, large }) => {
   return (
-    <header>
-      <StyledContainer>
+    <StyledHeader boxShadow={boxShadow}>
+      <StyledContainer large={large}>
         <StyledNav space={space}>
           <h1>Kenzie Hub</h1>
           {children}
         </StyledNav>
       </StyledContainer>
-    </header>
+    </StyledHeader>
   );
 };
 export default Header;
