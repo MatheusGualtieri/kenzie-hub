@@ -2,8 +2,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../components/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
+import Header from "../../components/Header";
 const formSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -24,6 +26,7 @@ const formSchema = yup.object().shape({
   course_module: yup.string().required("Modulo necessário"),
 });
 const Register = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -34,17 +37,26 @@ const Register = () => {
   const registerUser = async (data) => {
     await api
       .post("/users", data)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        console.log(response);
+        if (response.status < 400) {
+          toast.success("Usuário cadastrado com sucesso");
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Erro no cadastro do usuário");
+      });
   };
   const onSubmitFunction = (data) => {
     registerUser(data);
   };
   return (
     <>
-      <div>
+      <Header>
         <Link to={"/"}>Voltar</Link>
-      </div>
+      </Header>
       <main>
         <div>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>

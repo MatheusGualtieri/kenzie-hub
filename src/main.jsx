@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./index.css";
+import Reset from "./styles/reset";
+import Global from "./styles/global";
+import Font from "./styles/font";
 import { BrowserRouter } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Reset />
+    <Global />
+    <Font />
     <BrowserRouter>
       <App />
     </BrowserRouter>
