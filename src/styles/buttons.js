@@ -22,6 +22,7 @@ export const Button = styled.button`
         : ``};
   color: var(--color-gray-0);
   font-size: var(--font-size-title);
+  text-align: center;
   cursor: pointer;
   transition: 0.5s;
   :hover {
@@ -60,9 +61,10 @@ export const ButtonLink = styled(Link)`
         ? `var(--color-primary-negative)`
         : props.gray
         ? `var(--color-gray-1)`
-        : ``};
+        : `var(--color-gray-3)`};
   color: var(--color-gray-0);
   font-size: var(--font-size-title);
+  text-align: center;
   cursor: pointer;
   transition: 0.5s;
   :hover {

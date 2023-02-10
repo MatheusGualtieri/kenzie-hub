@@ -1,8 +1,14 @@
+import { StyledContainer } from "../../styles/container";
+import { StyledNav } from "./style";
 const Header = ({ children }) => {
   return (
     <header>
-      <h1>Kenzie Hub</h1>
-      {children}
+      <StyledContainer>
+        <StyledNav>
+          <h1>Kenzie Hub</h1>
+          {children}
+        </StyledNav>
+      </StyledContainer>
     </header>
   );
 };

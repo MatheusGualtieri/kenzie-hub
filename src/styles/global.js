@@ -28,5 +28,17 @@ const Global = createGlobalStyle`
         width: 100vw;
         height: 100vh;
     }
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        height: 10%;
+    }
+    main{
+        width: 100%;
+        height: 90%;
+    }
 `;
 export default Global;
