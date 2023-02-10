@@ -10,7 +10,7 @@ export const Button = styled.button`
       ? `var(--color-primary-negative)`
       : props.gray
       ? `var(--color-gray-1)`
-      : ``};
+      : `var(--color-gray-3)`};
   border: 1px solid
     ${(props) =>
       props.pink
@@ -19,7 +19,7 @@ export const Button = styled.button`
         ? `var(--color-primary-negative)`
         : props.gray
         ? `var(--color-gray-1)`
-        : ``};
+        : `var(--color-gray-3)`};
   color: var(--color-gray-0);
   font-size: var(--font-size-title);
   text-align: center;
@@ -52,7 +52,7 @@ export const ButtonLink = styled(Link)`
       ? `var(--color-primary-negative)`
       : props.gray
       ? `var(--color-gray-1)`
-      : ``};
+      : `var(--color-gray-3)`};
   border: 1px solid
     ${(props) =>
       props.pink
@@ -81,6 +81,6 @@ export const ButtonLink = styled(Link)`
         ? `var(--color-gray-2)`
         : ``};
 
-    ${(props) => (props.negative ? `filter: brightness(1.1)` : "")}
+    ${(props) => (!props.pink && !props.gray ? `filter: brightness(1.3)` : "")}
   }
 `;

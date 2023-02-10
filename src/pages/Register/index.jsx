@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import { StyledContainer } from "../../styles/container";
+import { Button, ButtonLink } from "../../styles/buttons";
+import { Input, InputSelect } from "../../styles/inputs";
 const formSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -54,91 +57,95 @@ const Register = () => {
   };
   return (
     <>
-      <Header>
-        <Link to={"/"}>Voltar</Link>
+      <Header space={true}>
+        <ButtonLink to={"/"}>Voltar</ButtonLink>
       </Header>
       <main>
-        <div>
+        <StyledContainer>
           <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <h1>Crie sua conta</h1>
+            <p>Rápido e gratis, vamo nessa</p>
             <label htmlFor="name">Nome</label>
-            <input
+            <Input
               placeholder={"Insira seu nome"}
               id="name"
               type="text"
               {...register("name")}
-            ></input>
+            ></Input>
 
             {errors.name?.message}
             <label htmlFor="email">Email</label>
-            <input
+            <Input
               type="text"
               id="email"
               placeholder={"Insira seu email"}
               {...register("email")}
-            ></input>
+            ></Input>
 
             {errors.email?.message}
             <label htmlFor="password">Senha</label>
-            <input
+            <Input
               placeholder={"Insira sua senha"}
               id="password"
               type="password"
               {...register("password")}
-            ></input>
+            ></Input>
 
             {errors.password?.message}
             <label htmlFor="passwordConfirmation">Confirmar Senha</label>
-            <input
+            <Input
               placeholder={"Insira sua senha novamente"}
               id="passwordConfirmation"
               type="password"
               {...register("passwordConfirmation")}
-            ></input>
+            ></Input>
 
             {errors.passwordConfirmation?.message}
             <label htmlFor="bio">Bio</label>
-            <input
+            <Input
               placeholder={"Insira sua bio"}
               id="bio"
               type="text"
               {...register("bio")}
-            ></input>
+            ></Input>
 
             {errors.bio?.message}
             <label htmlFor="contact">Contato</label>
-            <input
+            <Input
               placeholder={"Insira seu Contato"}
               id="contact"
               type="text"
               {...register("contact")}
-            ></input>
+            ></Input>
 
             {errors.contact?.message}
             <label htmlFor="course_module">Seleione um modulo</label>
-            <select
+            <InputSelect
               name="course_module"
               id="course_module"
               {...register("course_module")}
             >
               <option value="">Selecione um modulo</option>
               <option value="Primeiro módulo (Introdução ao Frontend)">
-                Primeiro módulo (Introdução ao Frontend)
+                Primeiro módulo
               </option>
-              <option value="Segundo módulo (Frontend Avançado">
-                Segundo módulo (Frontend Avançado)
+              <option value="Segundo módulo (Frontend Avançado)">
+                Segundo módulo
               </option>
               <option value="Terceiro módulo (Introdução ao Backend)">
-                Terceiro módulo (Introdução ao Backend)
+                Terceiro módulo
               </option>
               <option value="Quarto módulo (Backend Avançado)">
-                Quarto módulo (Backend Avançado)
+                Quarto módulo
               </option>
-            </select>
+            </InputSelect>
 
             {errors.module?.message}
-            <button type="submit">Enviar</button>
+            <Button negative type="submit">
+              Cadastrar
+            </Button>
           </Form>
-        </div>
+        </StyledContainer>
       </main>
     </>
   );

@@ -1,10 +1,10 @@
 import { StyledContainer } from "../../styles/container";
 import { StyledNav } from "./style";
-const Header = ({ children }) => {
+const Header = ({ space, children }) => {
   return (
     <header>
       <StyledContainer>
-        <StyledNav>
+        <StyledNav space={space}>
           <h1>Kenzie Hub</h1>
           {children}
         </StyledNav>
