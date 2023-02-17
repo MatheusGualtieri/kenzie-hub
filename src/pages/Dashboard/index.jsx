@@ -1,10 +1,14 @@
 import Header from "../../components/Header";
 import UserInformation from "../../components/UserInformation";
-import { ButtonLink, Button } from "../../styles/buttons";
+import { ButtonLink } from "../../styles/buttons";
 import { StyledContainer } from "../../styles/container";
 import { StyledSection } from "../../styles/sections";
 import InDevlopment from "../../components/InDevlopment";
-const Dashboard = ({ user }) => {
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
+const Dashboard = () => {
+  const { user } = useContext(UserContext);
   return (
     <>
       <Header space={true} boxShadow={true} large={true}>

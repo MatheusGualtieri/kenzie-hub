@@ -3,19 +3,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../components/Form";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { Button, ButtonLink } from "../../styles/buttons";
 import { Input } from "../../styles/inputs";
 import Header from "../../components/Header";
 import { StyledContainer } from "../../styles/container";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
 const formSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
   password: yup.string().required("Senha obrigatório"),
 });
 
-const Login = ({ setUser }) => {
+const Login = () => {
+  const { loginUser, loading } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -23,32 +26,10 @@ const Login = ({ setUser }) => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-  const loginUser = async (data) => {
-    setLoading(true);
-    await api
-      .post("/sessions", data)
-      .then((response) => {
-        console.log(response);
-        setUser(response.data.user);
-        window.localStorage.setItem("@TOKEN", response.data.token);
-        window.localStorage.setItem("@USERID", response.data.user.id);
-        toast.success("Usuário logado com sucesso!");
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 3000);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Erro ao logar o usuário. Verifica seu email ou senha");
-      })
-      .finally(setLoading(false));
-  };
+
   const onSubmitFunction = (data) => {
     loginUser(data);
   };
-
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   return (
     <>
       <Header></Header>
