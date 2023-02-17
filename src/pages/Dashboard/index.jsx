@@ -24,7 +24,7 @@ const Dashboard = () => {
       <main>
         <StyledSection>
           <StyledContainer large>
-            <UserInformation user={user} />
+            <UserInformation />
           </StyledContainer>
         </StyledSection>
         <StyledContainer large>

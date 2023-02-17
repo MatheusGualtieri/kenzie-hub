@@ -1,5 +1,8 @@
 import { StyledUserInformation } from "./style";
-const UserInformation = ({ user }) => {
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+const UserInformation = () => {
+  const { user } = useContext(UserContext);
   return (
     <StyledUserInformation>
       <h1>Olá, {user.name}</h1>
