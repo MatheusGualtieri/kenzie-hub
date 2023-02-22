@@ -28,7 +28,7 @@ export const ModalHeader = styled.div`
   box-sizing: border-box;
 `;
 export const ModalContainer = styled.div`
-  height: 18rem;
+  height: 20rem;
   width: 100%;
   max-width: 23rem;
 `;

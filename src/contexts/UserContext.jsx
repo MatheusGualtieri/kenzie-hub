@@ -11,6 +11,7 @@ const UserProvider = ({ children }) => {
   const [token, setToken] = useState(
     tokenOnLocalStorage ? tokenOnLocalStorage : null
   );
+  const [techList, setTechList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,8 +23,9 @@ const UserProvider = ({ children }) => {
           },
         })
         .then((response) => {
-          console.log(response);
           setUser(response.data);
+          setTechList(response.data.techs);
+
           navigate("/dashboard");
         })
         .catch((error) => {
@@ -33,13 +35,13 @@ const UserProvider = ({ children }) => {
     };
     token ? autoLoginUser(token) : null;
   }, []);
-
   const loginUser = async (data) => {
     setLoading(true);
     await api
       .post("/sessions", data)
       .then((response) => {
         setUser(response.data.user);
+        setTechList(response.data.user.techs);
         window.localStorage.setItem("@TOKEN", response.data.token);
         window.localStorage.setItem("@USERID", response.data.user.id);
         toast.success("Usuário logado com sucesso!");
@@ -48,7 +50,6 @@ const UserProvider = ({ children }) => {
         }, 3000);
       })
       .catch((error) => {
-        console.log(error);
         toast.error("Erro ao logar o usuário. Verifica seu email ou senha");
       })
       .finally(setLoading(false));
@@ -63,13 +64,22 @@ const UserProvider = ({ children }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
         toast.error("Erro no cadastro do usuário");
       });
   };
   return (
     <UserContext.Provider
-      value={{ registerUser, loginUser, user, setUser, loading, setLoading }}
+      value={{
+        registerUser,
+        loginUser,
+        user,
+        setUser,
+        loading,
+        setLoading,
+        token,
+        setTechList,
+        techList,
+      }}
     >
       {children}
     </UserContext.Provider>

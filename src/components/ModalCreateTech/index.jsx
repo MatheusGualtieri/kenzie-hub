@@ -4,10 +4,11 @@ import { Input, InputSelect } from "../../styles/inputs";
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext";
 const ModalCreateTech = ({ register, handleSubmit, errors }) => {
-  const { createTech } = useContext(TechContext);
+  const { createTech, togleModal } = useContext(TechContext);
 
   const onSubmitFunction = (data) => {
     createTech(data);
+    togleModal;
   };
   return (
     <Form onSubmit={handleSubmit(onSubmitFunction)}>
@@ -27,7 +28,7 @@ const ModalCreateTech = ({ register, handleSubmit, errors }) => {
         <option value={"Avançado"}>Avançado</option>
       </InputSelect>
       {errors.status?.message}
-      <Button pink type="subbmit">
+      <Button pink type="submit">
         Cadastrar Tecnologia
       </Button>
     </Form>

@@ -4,12 +4,12 @@ import { ButtonLink, Button } from "../../styles/buttons";
 import { StyledContainer } from "../../styles/container";
 import { StyledSection } from "../../styles/sections";
 import Modal from "../../components/Modal";
-import { useState } from "react";
+import { useContext } from "react";
+import { TechContext } from "../../contexts/TechContext";
+import UserListTechs from "../../components/UserListTechs";
+import { StyledMain } from "../../styles/main";
 const Dashboard = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const togleModal = () => {
-    setOpenModal(!openModal);
-  };
+  const { openModal } = useContext(TechContext);
   return (
     <>
       <Header space={true} boxShadow={true} large={true}>
@@ -22,20 +22,17 @@ const Dashboard = () => {
           Logout
         </ButtonLink>
       </Header>
-      <main>
+      <StyledMain>
         <StyledSection>
           <StyledContainer large>
             <UserInformation />
           </StyledContainer>
         </StyledSection>
         <StyledContainer large>
-          <h1>Tecnologiaas</h1>
-          <Button type="button" onClick={togleModal}>
-            +
-          </Button>
+          <UserListTechs />
         </StyledContainer>
-      </main>
-      {openModal ? <Modal togleModal={togleModal}></Modal> : null}
+      </StyledMain>
+      {openModal ? <Modal></Modal> : null}
     </>
   );
 };
