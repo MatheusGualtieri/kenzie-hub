@@ -84,3 +84,14 @@ export const ButtonLink = styled(Link)`
     ${(props) => (!props.pink && !props.gray ? `filter: brightness(1.3)` : "")}
   }
 `;
+
+export const ButtonIcon = styled.button`
+  background-color: transparent;
+  color: var(--color-gray-1);
+  border: none;
+  transition: 0.5s;
+  cursor: pointer;
+  :hover {
+    color: var(--color-gray-0);
+  }
+`;

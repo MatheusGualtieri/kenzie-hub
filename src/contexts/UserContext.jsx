@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
       await api
         .get("/profile", {
           headers: {
-            Authorization: `Basic ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {

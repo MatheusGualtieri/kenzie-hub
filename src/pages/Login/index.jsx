@@ -2,8 +2,6 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../components/Form";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Button, ButtonLink } from "../../styles/buttons";
 import { Input } from "../../styles/inputs";
 import Header from "../../components/Header";

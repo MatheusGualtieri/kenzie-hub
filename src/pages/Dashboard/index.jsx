@@ -1,14 +1,15 @@
 import Header from "../../components/Header";
 import UserInformation from "../../components/UserInformation";
-import { ButtonLink } from "../../styles/buttons";
+import { ButtonLink, Button } from "../../styles/buttons";
 import { StyledContainer } from "../../styles/container";
 import { StyledSection } from "../../styles/sections";
-import InDevlopment from "../../components/InDevlopment";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-
+import Modal from "../../components/Modal";
+import { useState } from "react";
 const Dashboard = () => {
-  const { user } = useContext(UserContext);
+  const [openModal, setOpenModal] = useState(false);
+  const togleModal = () => {
+    setOpenModal(!openModal);
+  };
   return (
     <>
       <Header space={true} boxShadow={true} large={true}>
@@ -28,9 +29,13 @@ const Dashboard = () => {
           </StyledContainer>
         </StyledSection>
         <StyledContainer large>
-          <InDevlopment></InDevlopment>
+          <h1>Tecnologiaas</h1>
+          <Button type="button" onClick={togleModal}>
+            +
+          </Button>
         </StyledContainer>
       </main>
+      {openModal ? <Modal togleModal={togleModal}></Modal> : null}
     </>
   );
 };
